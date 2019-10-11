@@ -1,0 +1,38 @@
+{
+    "properties": {
+        "displayName": "Match multiple name patterns.",
+        "description": "Allows one of multiple naming patterns for resources.",
+        "mode": "Indexed",
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                       "field": "type",
+                       "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+                    },
+                    {
+                        "not": {
+                            "field": "name",
+                            "match": "rg-*-core-*-*"
+                        }
+                    },
+                    {
+                        "not": {
+                            "field": "name",
+                            "match": "rg-*-pre-*-*"
+                        }
+                    },
+                    {
+                        "not": {
+                            "field": "name",
+                            "match": "rg-*-prd-*-*"
+                        }
+                    }
+                ]
+            },
+            "then": {
+                "effect": "deny"
+            }
+        }
+    }
+}

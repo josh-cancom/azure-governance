@@ -1,0 +1,1 @@
+Remove-AzManagementGroup -GroupName 'Contoso'
